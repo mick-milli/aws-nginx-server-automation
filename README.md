@@ -80,6 +80,22 @@ The script will automatically install and configure the **Nginx web server** and
 4. Enables Nginx at boot
 5. Deploys a custom HTML page
 
+## Idempotency Demonstration
+
+This deployment script was designed to be **idempotent**, meaning it can be run multiple times without causing errors or duplicating installations.
+
+The script checks whether Nginx is already installed before attempting installation.
+
+### Example check in the script
+
+```bash
+if dpkg -l | grep -q nginx; then
+    echo "Nginx is already installed."
+else
+    sudo apt install nginx -y
+fi
+```
+
 ## ✨ Features
 
 - Automated Nginx installation
