@@ -1,30 +1,41 @@
 #!/bin/bash
 
-echo "Updating system packages..."
-sudo apt update -y
+LOG_FILE="deployment.log"
 
-echo "Installing Nginx..."
-sudo apt install nginx -y
+echo "Starting deployment..." | tee -a $LOG_FILE
 
-echo "Starting Nginx service..."
-sudo systemctl start nginx
+echo "Updating system packages..." | tee -a $LOG_FILE
+sudo apt update -y | tee -a $LOG_FILE
 
-echo "Enabling Nginx to start on boot..."
-sudo systemctl enable nginx
+echo "Checking if Nginx is installed..." | tee -a $LOG_FILE
 
-echo "Creating custom website..."
+if dpkg -l | grep -q nginx; then
+    echo "Nginx is already installed." | tee -a $LOG_FILE
+else
+    echo "Installing Nginx..." | tee -a $LOG_FILE
+    sudo apt install nginx -y | tee -a $LOG_FILE
+fi
+
+echo "Starting Nginx service..." | tee -a $LOG_FILE
+sudo systemctl start nginx | tee -a $LOG_FILE
+
+echo "Enabling Nginx on boot..." | tee -a $LOG_FILE
+sudo systemctl enable nginx | tee -a $LOG_FILE
+
+echo "Deploying custom HTML page..." | tee -a $LOG_FILE
+
 sudo bash -c 'cat > /var/www/html/index.html <<EOF
 <!DOCTYPE html>
 <html>
 <head>
-<title>Automated Deployment</title>
+<title>Automation Project</title>
 </head>
 <body>
-<h1>Automation Success 🚀</h1>
-<p>This Nginx server was deployed using a Bash automation script.</p>
+<h1>Automation Successful 🚀</h1>
+<p>This server was deployed using a Bash script.</p>
 </body>
 </html>
 EOF'
 
-echo "Deployment completed successfully!"
+echo "Deployment complete!" | tee -a $LOG_FILE
 
