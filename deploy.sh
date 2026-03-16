@@ -31,8 +31,8 @@ sudo bash -c 'cat > /var/www/html/index.html <<EOF
 <title>Automation Project</title>
 </head>
 <body>
-<h1>Automation Successful 🚀</h1>
-<p>This server was deployed using a Bash script.</p>
+<h1>Automation Successful</h1>
+<h3>This server was deployed using a Bash script.</h3>
 </body>
 </html>
 EOF'
