@@ -74,11 +74,11 @@ The script will automatically install and configure the **Nginx web server** and
 
 ## What the Script Does
 
-1. Updates system packages
-2. Installs Nginx
-3. Starts the web server
-4. Enables Nginx at boot
-5. Deploys a custom HTML page
+- Updates system packages
+- Installs Nginx
+- Starts the web server
+- Enables Nginx at boot
+- Deploys a custom HTML page
 
 ## Idempotency Demonstration
 
