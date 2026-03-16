@@ -106,5 +106,6 @@ fi
 
 ## Screenshots
 
-(script screenshots here)
+![screenshots](screenshots/scripts-running.png)
 
+![screenshots](screenshots/website-running.png)
